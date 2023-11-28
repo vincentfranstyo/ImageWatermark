@@ -3,7 +3,7 @@ from imageCompare import image_compare
 
 print("""
 How to use:
-1. Prepare the image you want to use
+1. Prepare the image you want to ugit se
 2. Upload the image to the 'img' folder
 3. Enjoy!!! >//<
 4. Check the result folder
