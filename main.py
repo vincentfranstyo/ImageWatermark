@@ -8,7 +8,7 @@ How to use:
 3. Enjoy!!! >//<
 4. Check the result folder
 """)
-oriImage = input("Enter image file name (with .jpg or .png): ")
+oriImage = input("Enter image file name (with .jpg or .png), please make sure that the file is in img folder: ")
 noiseLevel = int(input("Enter the noise level (10 - 100): "))
 resFile = input("Enter the result file name (without .jpg or .png): ")
 
