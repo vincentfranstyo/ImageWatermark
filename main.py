@@ -1,5 +1,7 @@
-from encode import encode_image
-from imageCompare import image_compare
+import cv2
+import numpy as np
+
+from encode import encode_image, image_compare, generate_watermark
 
 print("""
 How to use:
@@ -13,8 +15,13 @@ noiseLevel = int(input("Enter the noise level (10 - 100): "))
 resFile = input("Enter the result file name (without .jpg or .png): ")
 
 seed = int(input("Enter the seed: "))
+img = cv2.imread("img\\" + oriImage, cv2.IMREAD_GRAYSCALE)
+img = np.array(img, dtype=np.int16)
+img_width, img_height = img.shape[:2]
 
-encode_image(resFile, "img\\" + oriImage, noiseLevel, seed)
+watermark = generate_watermark(img_height, img_width, seed)
+
+encode_image(resFile, img, watermark, noiseLevel)
 
 answer = input("Check if watermarked? (Y/N) : ").upper()
 print(answer)
@@ -22,5 +29,6 @@ while answer != "Y" and answer != "N":
     print("Input invalid!")
     answer = input("Check if watermarked? (Y/N) : ").upper()
 if answer == "Y":
-    compare = image_compare("img\\" + oriImage, "result\\" + resFile + ".png")
-    print("result : " + compare)
+    image_compare("result\\" + resFile + ".png", watermark)
+else:
+    print("Yeah guess so")
